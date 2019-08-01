@@ -1,6 +1,6 @@
 import LogoMenu from './logoMenu.js';
 import LogoMenuItem from './logoMenuItem.js';
-import { toggleElement, createBigImage, resetComicArticleVisibility } from './helper.js';
+import { toggleElement, createBigImage, resetComicArticleVisibility, placeholderSrc } from './helper.js';
 
 // handle main logo
 const aboutItem = new LogoMenuItem('about-item');
@@ -29,7 +29,7 @@ smallLogos.forEach(logo => {
         // handle section change
         const targetID = event.currentTarget.id.split('-')[0];
         const originElem = document.querySelector(`#${targetID}`);
-        
+
         // for comic
         if (targetID === 'comic') resetComicArticleVisibility()
 
@@ -80,15 +80,13 @@ comicPages.forEach(page => {
 });
 
 // Big image
-document.querySelectorAll('#illustration img, .comic-pages img').forEach(img => 
+document.querySelectorAll('#illustration img, .comic-pages img').forEach(img =>
     img.addEventListener('click', createBigImage)
 );
 
 // lazy loading images
 // https://css-tricks.com/the-complete-guide-to-lazy-loading-images/
-document.addEventListener('DOMContentLoaded', _ => {
-    const lazyloadImgs = document.querySelectorAll('img[data-src]');
-
+function lazyLoadImages (images, options) {
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -98,11 +96,31 @@ document.addEventListener('DOMContentLoaded', _ => {
                     imageObserver.unobserve(img);
                 }
             });
-        });
-
-        lazyloadImgs.forEach(img => imageObserver.observe(img));
+        }, options);
+    
+        images.forEach(img => imageObserver.observe(img));
     } else {
         // fallback
-        lazyloadImgs.forEach(img => img.src = img.dataset.src);
+        images.forEach(img => img.src = img.dataset.src);
     }
-});
+}
+
+const illustrationImages = document.querySelectorAll('#illustration-article img[data-src]');
+const verminImages = document.querySelectorAll('#vermin-comic img[data-src]');
+
+illustrationImages.forEach(img => img.src = placeholderSrc(400, 400));
+verminImages.forEach(img => img.src = placeholderSrc(600, 800));
+
+
+const illustrationOptions = {
+    root: document.querySelector('#illustration-article'),
+    rootMargin: '0px 0px 100px 0px'
+};
+
+const verminOptions = {
+    root: document.querySelector('#vermin-comic'),
+    rootMargin: '0px 0px 100px 0px'
+};
+
+lazyLoadImages(illustrationImages, illustrationOptions);
+lazyLoadImages(verminImages, verminOptions);

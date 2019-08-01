@@ -119,6 +119,10 @@ h2:before {
         height: 350px;
     }
 
+    #main-header #signature {
+        margin: 10px auto;
+    }
+
     #illustration-article {
         flex-direction: column;
     }

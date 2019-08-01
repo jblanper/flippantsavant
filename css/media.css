@@ -1,0 +1,237 @@
+/* Offset html anchors for fixed header
+https://timoanttila.com/tutorials/offsetting-anchor-links-with-fixed-header */
+h2:before {
+    content: "";
+    display: block;
+    padding-top: 70px; /* header height + empty space */
+    margin-top: -70px; /* header height to degrees padding’s space */
+}
+
+/* media queries */
+/* mobile and tablet */
+@media (max-width: 1150px) {
+    #main-header {
+        width: 100vw;
+    }
+
+    #homepage-graphic {
+        z-index: -1;
+        width: 100vw;
+        margin: 0;
+        object-fit: cover;
+    }
+
+    .gallery {
+        flex-direction: column;
+    }
+
+    .section-header {
+        flex-direction: row;
+        width: 100%;
+        height: 70px;
+    }
+
+    .small-logo {
+        width: 40px;
+        height: 40px;
+        margin: 10px 20px;
+    }
+
+    .menu-btn {
+        font-size: .85rem;
+        position: absolute;
+        top: 1rem;
+        right: 1.3rem;
+    }
+
+    .menu-desktop-btn {
+        display: none;
+    }
+
+    .menu-mobile-btn {
+        display: block;
+    }
+
+    #illustration-header h1,
+    #comic-header h1,
+    #about-header h1 {
+        transform: none;
+        font-size: 1.6rem;
+    }
+
+    #comic-article h2,
+    #about-article h2 {
+        font-size: 2rem;
+    }
+
+    #comic-article p,
+    #comic-article li,
+    #about-article p {
+        font-size: 1.1rem;
+        line-height: 1.5rem;
+    }
+
+    .comic-pages-info, 
+    .comic-pages img {
+        width: 90%;
+    }
+}
+
+/* tablet */
+@media (max-width: 1150px) and (min-width: 750px) {  
+    #illustration-article .column {
+        margin: 1rem;
+    }
+
+    #illustration-article img {
+        width: 300px;
+    }
+
+    .comic-menu-item img,
+    .comic-info {
+        width: 300px;
+        margin: 0 1rem;
+    }
+
+    
+    .comic-img-link .overlay {
+        width: 300px;
+        height: 300px;
+        margin-left: -.8rem;
+    }
+
+    #about-article {
+        flex-direction: column;
+    }
+
+    #about-article .column {
+        margin: 1rem 0;
+    }
+
+    #about-img-container img {
+        width: 350px;
+    }
+}
+
+/* mobile */
+@media (max-width: 750px) {
+    #main-header #logo {
+        height: 350px;
+    }
+
+    #illustration-article {
+        flex-direction: column;
+    }
+
+    #illustration-article .column {
+        align-items: center;
+    }
+
+    #illustration-article img {
+        width: 85%;
+    }
+
+    .comic-menu-item {
+        display: block;
+        position: relative;
+        width: 75%;
+        margin: auto;
+    }
+
+    .comic-img-link img {
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    .comic-img-link .overlay {
+        display: none;
+    }
+
+    .comic-info {
+        max-width: 80%;
+        margin: 1rem 0;
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1;
+    }
+
+    .comic-menu-item .right > * {
+        text-align: left;
+    }
+
+    .comic-img-link img {
+        opacity: .13;
+    }
+
+    #about {
+        height: 100vh;
+    }
+
+    #about-article {
+        display: block;
+    }
+
+    #about-article .column {
+        width: 100vw;
+    }
+
+    #about-img-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    #about-img-container img {
+        box-shadow: none;
+        height: 100vh;
+        width: 100%;
+        object-fit: cover;
+        opacity: .08;
+    }
+
+    #about-text-container {
+        width: 300px !important;
+        margin: 3rem auto 0 auto;
+    }
+}
+
+@media (max-height: 650px) and (min-height: 500px) and (min-width: 500px) {
+    #main-header #logo {
+        height: 430px !important;
+    }
+}
+
+/* phone landscape */
+@media (max-height: 500px) {
+    #main-header #logo {
+        height: 280px;
+    }
+    
+    #main-header #intro,
+    #main-header .close-btn {
+        font-size: 1rem;
+        line-height: 1.1rem
+    }
+
+    #main-header .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 150px;
+    }
+
+    #main-header #signature {
+        font-size: .6rem;
+        margin: 0 auto;
+    }
+
+    #main-header #signature svg {
+        width: 20px;
+    }
+
+    #main-header .close-btn {
+        margin: 20px auto 0 auto;
+        padding: 0;
+    }
+}

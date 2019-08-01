@@ -1,0 +1,393 @@
+/* general */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Ubuntu', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    line-height: 1.7rem;
+    font-size: 1.
+}
+
+.hidden {
+    display: none !important;
+}
+
+.to-left {
+    transform: translateX(-100%);
+}
+
+.btn {
+    font-family: inherit;
+    font-size: 1.1rem;
+    color: #808080;
+    border: 0;
+    background-color: white;
+    padding: .5rem;
+    transition: color 100ms ease-in, background-color 100ms ease-in;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color: black;
+    color: white;
+}
+
+/* main-header */
+#main-header {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background-color: rgba(255, 255, 255, .9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 1;
+    transition: transform 300ms ease-out;
+}
+
+#main-header #logo {
+    width: 95%;
+    height: 550px;
+    margin: 0 auto;
+}
+
+#main-header #intro {
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 0 auto;
+    line-height: 2rem;
+}
+
+#main-header .close-btn {
+    color: black;
+    width: 5rem;
+    margin: 5px auto;
+}
+
+#main-header .close-btn:hover,
+#main-header .close-btn:focus {
+    color: white;
+}
+
+#main-header #logo text {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#about-text,
+#comic-text, 
+#illustration-text {
+    transition: fill 200ms ease-out;
+}
+
+#about-item:hover, 
+#comic-item:hover, 
+#illustration-item:hover,
+.btn:hover,
+#illustration-article img:hover {
+    cursor: pointer;
+}
+
+/* signature */
+#signature {
+    margin: 2rem auto 10px auto;
+}
+  
+#signature a {
+    display: flex;
+    text-decoration: none;
+    color: #983626;
+    align-items: center;
+}
+  
+#signature svg {
+    display: block;
+    margin-left: .6rem;
+}
+  
+ #signature:hover a {
+    color: #6da0bd;
+}
+  
+#signature:hover path {
+    fill: #6da0bd;
+}
+
+/* section headers */
+.section-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 250px;
+    align-items: center;
+    background-color: white;
+    z-index: 2;
+}
+
+.small-logo {
+    margin: 15px;
+    width: 80px;
+    height: 80px;
+    transition: transform 120ms ease-in;
+}
+
+.small-logo:hover,
+.small-logo:focus {
+    transform: rotate(-45deg);
+}
+
+.menu-mobile-btn {
+    display: none;
+}
+
+.section-header h1 {
+    font-size: 3rem;
+}
+
+/* homepage */
+#homepage {
+    height: 100vh;
+    overflow: hidden;
+}
+
+#homepage-graphic {
+    height: 100%;
+    min-width: 50%;
+    margin-left: 50%;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+/* galleries (illustration, comic, about) */
+.gallery {
+    display: flex;
+}
+
+/* illustration */
+#illustration-header .small-logo-colored-part {
+    fill: #59f;
+}
+
+#illustration-header h1 {
+    color: #59f;
+    transform: rotate(90deg) translateX(150px);
+}
+
+#illustration-article {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+#illustration-article .column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 1.8rem;
+}
+
+#illustration-article img {
+    width: 400px;
+    max-height: 92vh;
+    object-fit: cover;
+    margin: 10px 0;
+    box-shadow: 5px 5px #59f, -1px -1px #808080;
+    transition: transform 150ms ease-in;
+}
+
+#illustration-article img:hover {
+    transform: rotate(2deg); 
+}
+
+/* big image */
+.big-img,
+.big-img-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.big-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    z-index: 5;
+    right: 0;
+    bottom: 0;
+}
+
+.big-img-overlay {
+    background-color: black;
+    opacity: .5;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+}
+
+/* comic & about */
+.comic-info h2,
+.comic-pages h2,
+#about-article h2 {
+    color: #808080;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.comic-info p,
+#about-article p {
+    margin-right: 2rem;
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.comic-pages a,
+#about-article a {
+    text-decoration: none;
+    color: #59f;
+}
+
+.comic-pages a:hover,
+.comic-pages a:focus,
+#about-article a:hover, 
+#about-article a:focus {
+    text-decoration: underline;
+}
+
+/* comic menu */
+#comic-header .small-logo-colored-part {
+    fill: #ff8181;
+}
+
+#comic-header h1 {
+    color: #ff8181;
+    transform: rotate(90deg) translateX(100px);
+}
+
+#comic-article {
+    width: 100%;
+}
+
+.comic-menu-item {
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+}
+
+.comic-menu-item .right > * {
+    text-align: right;
+    margin-right: 0;
+}
+
+.comic-menu-item img,
+.comic-info {
+    width: 400px;
+    margin: 0 1.8rem;
+}
+
+.comic-menu-item img {
+    box-shadow: 5px 5px #ff8181, -1px -1px #808080;
+}
+
+.comic-info li {
+    list-style: none;
+    font-size: 1.2rem;
+}
+
+/* comic-menu links */
+.comic-img-link {
+    position: relative;
+}
+
+.comic-img-link .overlay {
+    z-index: 1;
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 0;
+    left: 1.8rem;
+    background-color: #ff8181;
+    visibility: hidden;
+    opacity: .5;
+}
+
+.comic-img-link:hover > .overlay,
+.comic-img-link:focus > .overlay{
+    visibility: visible;
+}
+
+.comic-info a {
+    color: #808080;
+    text-decoration: none;
+}
+
+.comic-info a:hover,
+.comic-info a:focus {
+    color: #ff8181;
+}
+
+/* comic-pages */
+.comic-pages {
+    width: 90%;
+    margin: 2rem auto;
+}
+
+.comic-pages-info, 
+.comic-pages img {
+    max-width: 800px;
+}
+
+.comic-pages-info {
+    margin: 2rem auto -.8rem auto;
+}
+
+.comic-pages-info p {
+    font-size: 1.2;
+}
+
+.comic-pages img {
+    display: block;
+    margin: 1rem auto;
+    box-shadow: 5px 5px #ff8181, -1px -1px #ccc;
+}
+
+/* about */
+#about-header .small-logo-colored-part {
+    fill: #808080;
+}
+
+#about-header h1 {
+    color: #808080;
+    transform: rotate(90deg) translateX(100px);
+}
+
+#about-article {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#about-text-container {
+    width: 350px;
+    height: 450px;
+    margin: 0 5rem;
+}
+
+#about-article img {
+    max-width: 450px;
+    box-shadow: 5px 5px #000, -1px -1px #808080;
+}

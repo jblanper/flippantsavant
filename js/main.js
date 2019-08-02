@@ -1,6 +1,6 @@
 import LogoMenu from './logoMenu.js';
 import LogoMenuItem from './logoMenuItem.js';
-import { createBigImage, placeholderSrc, lazyLoadImages, changeSection } from './helper.js';
+import { createTemporalBigImage, createBigImageGallery, placeholderSrc, lazyLoadImages, changeSection, fade } from './helper.js';
 
 // handle main logo ---------------------------------------------------------------------------
 const aboutItem = new LogoMenuItem('about-item');
@@ -43,7 +43,6 @@ window.addEventListener("hashchange", changeSection);
 
 // #main-header close-btn binding
 const closeBtn = document.querySelector('.close-btn');
-closeBtn.style.display = 'none'; // hide close btn on load
 
 closeBtn.addEventListener('click', event => {
     logoMenu.header.classList.add('to-left');
@@ -65,9 +64,20 @@ document.querySelectorAll('.menu-btn').forEach(btn =>
     })
 );
 
-// illustration images binding
-document.querySelectorAll('#illustration img, .comic-pages img').forEach(img =>
-    img.addEventListener('click', createBigImage)
+// illustration images binding (not vermin-comic)
+document.querySelectorAll('#illustration img, #predator-comic img, #alien-comic img').forEach(img =>
+    img.addEventListener('click', event => createTemporalBigImage(document.body, event))
 );
 
 window.onload = _ => history.pushState("", document.title, window.location.pathname);
+
+// vermin comic gallery fullscreen
+document.querySelectorAll('#vermin-comic img').forEach(img => {
+    const imgGalleryViewer = document.querySelector('#img-gallery-viewer');
+    
+    img.addEventListener('click', event => {
+        window.location.hash = '#img-gallery-viewer';
+        createBigImageGallery(imgGalleryViewer, event, 12);
+        fade(document.querySelector('.instructions'), -.008, 1, .001);
+    });
+});

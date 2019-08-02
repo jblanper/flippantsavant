@@ -169,7 +169,7 @@ body {
     border: 1px solid #ccc;
 }
 
-/* galleries (illustration, comic, about) */
+/* galleries (illustration, comic, about, vermin-comic, alien-comic, predator comic) */
 .gallery {
     display: flex;
 }
@@ -342,7 +342,7 @@ body {
 /* comic-pages */
 .comic-pages {
     width: 90%;
-    margin: 2rem auto;
+    margin: .5rem auto 2rem auto;
 }
 
 .comic-pages-info, 
@@ -362,6 +362,35 @@ body {
     display: block;
     margin: 1rem auto;
     box-shadow: 5px 5px #ff8181, -1px -1px #ccc;
+}
+
+/* image gallery viewer */
+.instructions {
+    z-index: 6;
+    position: fixed;
+    top: 0;
+    /* bottom: 0; */
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    transition: opacity 100ms ease-in;
+}
+
+.instructions p {
+    background-color: rgba(255, 255, 255, .9);
+    /* border: 2px solid black; */
+    padding: 5px;
+    margin: 15px;
+    min-width: 40px;
+    box-shadow: 3px 3px 2px #aaa;
+}
+
+.instructions:hover {
+    opacity: 1 !important;
 }
 
 /* about */

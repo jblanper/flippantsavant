@@ -21,7 +21,7 @@
 <body>
 
     <header id="main-header" class="homepage-header">
-        <button class="btn close-btn">[ close ]</button>
+        <button class="btn close-btn" style="display: none;">[ close ]</button>
 
         <svg id="logo" width="337.61" height="365.18" version="1.1" viewBox="0 0 89.325 108.622"
             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -216,7 +216,15 @@
                             <img src="./img/comic_menu/vermin.jpg" alt="Mr. Vermin">
                         </a>
                         <div class="comic-info">
-                            <h2><a href="#vermin-comic" class="comic-link comic-h2-link">Mr. Vermin</a></h2>
+                            <h2><a href="#vermin-comic" class="comic-link comic-h2-link">Mr. Vermin <svg width="40" height="30" version="1.1" viewBox="0 0 15.875 15.875" xmlns="http://www.w3.org/2000/svg">
+                                <g transform="translate(0 -281.12)">
+                                 <rect transform="rotate(45)" x="208.49" y="192.2" width="5.5312" height="8.7643" ry="2.1424" fill="none" stroke="#808080" stroke-width=".88139"/>
+                                 <rect transform="rotate(45)" x="204.67" y="195.53" width="7.4009" height="2.1424" ry="1.0712" fill="#fff"/>
+                                 <rect transform="rotate(45)" x="205.84" y="196.44" width="5.5312" height="8.7643" ry="2.1424" fill="none" stroke="#808080" stroke-width=".88139"/>
+                                 <rect transform="rotate(45)" x="208.14" y="199.72" width="7.4009" height="2.1424" ry="1.0712" fill="#fff"/>
+                                 <path d="m6.8134 288.02c-0.81169 0.84103-0.80382 2.1712 0.026174 3.0012l0.8819 0.88191c0.83 0.82999 2.1601 0.83786 3.0012 0.0262" fill="none" stroke="#808080" stroke-width=".88139"/>
+                                </g>
+                               </svg></a></h2>
                             <p>The story of a dieing man.</p>
                             <ul>
                                 <li>Script: Tomás Parra</li>
@@ -227,7 +235,15 @@
 
                     <div class="comic-menu-item" id="predator-menu">
                         <div class="comic-info right">
-                            <h2><a href="#predator-comic" class="comic-link comic-h2-link">Predated</a></h2>
+                            <h2><a href="#predator-comic" class="comic-link comic-h2-link">Predated <svg width="40" height="30" version="1.1" viewBox="0 0 15.875 15.875" xmlns="http://www.w3.org/2000/svg">
+                                <g transform="translate(0 -281.12)">
+                                 <rect transform="rotate(45)" x="208.49" y="192.2" width="5.5312" height="8.7643" ry="2.1424" fill="none" stroke="#808080" stroke-width=".88139"/>
+                                 <rect transform="rotate(45)" x="204.67" y="195.53" width="7.4009" height="2.1424" ry="1.0712" fill="#fff"/>
+                                 <rect transform="rotate(45)" x="205.84" y="196.44" width="5.5312" height="8.7643" ry="2.1424" fill="none" stroke="#808080" stroke-width=".88139"/>
+                                 <rect transform="rotate(45)" x="208.14" y="199.72" width="7.4009" height="2.1424" ry="1.0712" fill="#fff"/>
+                                 <path d="m6.8134 288.02c-0.81169 0.84103-0.80382 2.1712 0.026174 3.0012l0.8819 0.88191c0.83 0.82999 2.1601 0.83786 3.0012 0.0262" fill="none" stroke="#808080" stroke-width=".88139"/>
+                                </g>
+                               </svg></a></h2>
                             <p>Major Alan "Dutch" Schaefer fights the Predator, but not everything is what it seems.</p>
                             <ul>
                                 <li>Script: Luis Caballero</li>
@@ -246,7 +262,15 @@
                             <img src="./img/comic_menu/alien.jpg" alt="Alienated">
                         </a>
                         <div class="comic-info">
-                            <h2><a href="#alien-comic" class="comic-link comic-h2-link">Alienated</a></h2>
+                            <h2><a href="#alien-comic" class="comic-link comic-h2-link">Alienated <svg width="40" height="30" version="1.1" viewBox="0 0 15.875 15.875" xmlns="http://www.w3.org/2000/svg">
+                                <g transform="translate(0 -281.12)">
+                                 <rect transform="rotate(45)" x="208.49" y="192.2" width="5.5312" height="8.7643" ry="2.1424" fill="none" stroke="#808080" stroke-width=".88139"/>
+                                 <rect transform="rotate(45)" x="204.67" y="195.53" width="7.4009" height="2.1424" ry="1.0712" fill="#fff"/>
+                                 <rect transform="rotate(45)" x="205.84" y="196.44" width="5.5312" height="8.7643" ry="2.1424" fill="none" stroke="#808080" stroke-width=".88139"/>
+                                 <rect transform="rotate(45)" x="208.14" y="199.72" width="7.4009" height="2.1424" ry="1.0712" fill="#fff"/>
+                                 <path d="m6.8134 288.02c-0.81169 0.84103-0.80382 2.1712 0.026174 3.0012l0.8819 0.88191c0.83 0.82999 2.1601 0.83786 3.0012 0.0262" fill="none" stroke="#808080" stroke-width=".88139"/>
+                                </g>
+                               </svg></a></h2>
                             <p>Warrant officer Ripley confronts the alien in an unusual way.</p>
                             <ul>
                                 <li>Script: Luis Caballero</li>
@@ -363,6 +387,14 @@
             </article>
         </section>
 
+        <section id="img-gallery-viewer" class="hidden">
+            <div class="instructions">
+                <p>&#9668;</p>
+                <p>&#9003; to exit</p>
+                <p>&#9658;</p>
+            </div>
+        </section>
+
         <section id="about" class="gallery hidden">
 
             <header id="about-header" class="section-header">
@@ -396,6 +428,7 @@
                         showcase my current work.</p>
                     <p>I am available for hire anf for any collaboration. For any inquiry, please contact me via email:
                         <a href="mailto:tparraiglesias@gmail.com">tparraiglesias@gmail.com</a></p>
+                    <p>I am also in <a href="https://www.instagram.com/flippantsavant/">Instagram</a></p>
                 </div>
             </article>
 

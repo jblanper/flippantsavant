@@ -1,5 +1,3 @@
-import { toggleElement, resetComicArticleVisibility } from './helper.js';
-
 export default class LogoMenu {
     constructor (...logoMenuItems) {
         // elements
@@ -27,21 +25,15 @@ export default class LogoMenu {
         // hide header
         this.header.classList.toggle('to-left');
 
-        // change sections
-        const newSelectedItem = this.menuItems[event.target.id.split('-')[0]];
-        
+        const targetSectionId = event.currentTarget.id.split('-')[0]
+        const newSelectedItem = this.menuItems[targetSectionId];
+
         if (this.selectedItem) {
             if (this.selectedItem.sectionName === newSelectedItem.sectionName) return;
-            // for comic
-            if (this.selectedItem.sectionName === 'comic') resetComicArticleVisibility();
 
             this.selectedItem.selected = false;
             this.selectedItem.handleMouseLeave();
-
-            toggleElement(this.selectedItem.sectionElem);
-        } else {
-            toggleElement(this.homepageElem);
-        }
+        } 
         
         this.selectedItem = newSelectedItem;
         this.selectedItem.selected = true;
@@ -49,8 +41,6 @@ export default class LogoMenu {
         window.cancelAnimationFrame(this.selectedItem.animationID);
         this.selectedItem.animationID = undefined;
         this.selectedItem.handleMouseEnter();
-
-        toggleElement(this.selectedItem.sectionElem);
     }
 
     setAnimations () {

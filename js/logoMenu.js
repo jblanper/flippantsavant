@@ -1,7 +1,6 @@
 export default class LogoMenu {
     constructor (...logoMenuItems) {
         // elements
-        this.homepageElem = document.querySelector('#homepage');
         this.header = document.querySelector('body > header');
 
         this.menuItems = {};

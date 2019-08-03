@@ -1,6 +1,6 @@
 import LogoMenu from './logoMenu.js';
 import LogoMenuItem from './logoMenuItem.js';
-import { createTemporalBigImage, createBigImageGallery, placeholderSrc, lazyLoadImages, changeSection, fade } from './helper.js';
+import { createBigImageGallery, removeBigImage, placeholderSrc, lazyLoadImages, changeSection, fade } from './helper.js';
 
 // handle main logo ---------------------------------------------------------------------------
 const aboutItem = new LogoMenuItem('about-item');
@@ -38,8 +38,6 @@ lazyLoadImages(illustrationImages, illustrationOptions);
 lazyLoadImages(verminImages, verminOptions);
 
 // Bindings -----------------------------------------------------------------------------------
-// general bindings
-window.addEventListener("hashchange", changeSection);
 
 // #main-header close-btn binding
 const closeBtn = document.querySelector('.close-btn');
@@ -47,14 +45,6 @@ const closeBtn = document.querySelector('.close-btn');
 closeBtn.addEventListener('click', event => {
     logoMenu.header.classList.add('to-left');
 });
-
-// section-header small-logo binding
-document.querySelectorAll('.small-logo').forEach(btn =>
-    btn.addEventListener('click', event => {
-        closeBtn.style.display = 'none';
-        logoMenu.reset();
-    })
-);
 
 // section-header menu btn binding
 document.querySelectorAll('.menu-btn').forEach(btn =>
@@ -64,20 +54,36 @@ document.querySelectorAll('.menu-btn').forEach(btn =>
     })
 );
 
-// illustration images binding (not vermin-comic)
-document.querySelectorAll('#illustration img, #predator-comic img, #alien-comic img').forEach(img =>
-    img.addEventListener('click', event => createTemporalBigImage(document.body, event))
-);
-
-window.onload = _ => history.pushState("", document.title, window.location.pathname);
-
-// vermin comic gallery fullscreen
-document.querySelectorAll('#vermin-comic img').forEach(img => {
+// illustration images binding
+document.querySelectorAll('#illustration img, .comic-pages img').forEach(img => {
     const imgGalleryViewer = document.querySelector('#img-gallery-viewer');
     
     img.addEventListener('click', event => {
         window.location.hash = '#img-gallery-viewer';
-        createBigImageGallery(imgGalleryViewer, event, 12);
+
+        let imgNumber = 1;
+        if (img.src.search(/illustrations/) > -1) imgNumber = 14;
+        else if (img.src.search(/vermin/) > -1) imgNumber = 12;
+
+        createBigImageGallery(imgGalleryViewer, event, imgNumber);
         fade(document.querySelector('.instructions'), -.008, 1, .001);
     });
 });
+
+// general bindings
+window.addEventListener("hashchange", event => {
+    // hide main header when 'back'
+    if (!logoMenu.header.classList.contains('to-left')) {
+        logoMenu.header.classList.add('to-left');
+    }
+    
+    const activeSectionId = changeSection(event);
+
+    // config of main header when going to #homepage
+    if (activeSectionId === 'homepage') {
+        closeBtn.style.display = 'none';
+        logoMenu.reset();
+    }
+});
+
+window.onload = _ => history.pushState("", document.title, window.location.pathname);

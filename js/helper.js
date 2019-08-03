@@ -10,14 +10,11 @@ function toggleElement(elem) {
 }
 
 export function changeSection(event) {
-    const hash = window.location.hash;
-    const activeSectionId = hash.slice(1);
+    let hash = window.location.hash;
 
-    // hide close btn of main menu in homepage
-    if (activeSectionId === 'homepage') {
-        const closeBtn = document.querySelector('#main-header .close-btn');
-        closeBtn.style.display = 'none';
-    }
+    if (!hash) hash = '#homepage';
+
+    const activeSectionId = hash.slice(1);
 
     document.querySelectorAll('section').forEach(section => {
         // hide/show section
@@ -26,6 +23,8 @@ export function changeSection(event) {
             toggleElement(section);
         }
     })
+
+    return activeSectionId;
 }
 
 // animation functions
@@ -66,32 +65,13 @@ function createBigImage(parent, event) {
     parent.appendChild(bigImage);
 
     // animations
-    fade(overlay, .08, 0, .5);
     fade(bigImage, .08, 0, 1);
+    fade(overlay, .08, 0, 1);
 
     return [bigImage, overlay];
 }
 
-export function createTemporalBigImage(parent, event) {
-    const [bigImage, overlay] = createBigImage(parent, event);
-
-    // create instructions pop up
-    const instructions = document.createElement('div');
-    instructions.classList.add('instructions');
-    const p = document.createElement('p');
-    p.innerHTML = 'click to exit'
-    parent.appendChild(instructions);
-    instructions.appendChild(p);
-
-    // remove instructions slowly
-    fade(instructions, -.01, 1, .001, true);
-
-    // click on image to remove it
-    bigImage.addEventListener('click', _ => removeBigImage(parent));
-    overlay.addEventListener('click', _ => removeBigImage(parent));
-}
-
-function removeBigImage(parent) {
+export function removeBigImage(parent) {
     // remove overlay and big-image
     const overlay = document.querySelector(`${parent.nodeName} > .big-img-overlay`);
     parent.removeChild(overlay);
@@ -102,29 +82,32 @@ function removeBigImage(parent) {
 
 export function createBigImageGallery(parent, event, imgNumber) {
     // the gallery is close with the back button both in desktop and mobile
-    let bigImage = parent.querySelector('img');
+    const imgGalleryViewer = document.querySelector('#img-gallery-viewer');
 
-    const changeSrc = (newSrcNum) => {
-        bigImage.src = bigImage.src.replace(/\d+.jpg/, `${newSrcNum}.jpg`);
-    };
-
-    // in case there is already an image
-    if (bigImage) {
-        changeSrc(1);
-        return;
-    } else {
-        bigImage = createBigImage(parent, event)[0];
+    // remove previous big-img
+    if (imgGalleryViewer.querySelector('img')) {
+        removeBigImage(imgGalleryViewer);
     }
 
+    const changeSrc = (newSrcNum) => {
+        bigImage.src = bigImage.src.replace(/(\d+).(jpg|png)/, `${newSrcNum}.$2`);
+    };
+
+    const getSrcNum = event => Number(event.target.src.match(/(\d+).(jpg|png)/)[1]);
+
+    const bigImage = createBigImage(parent, event)[0];
+
     // bindings
-    document.querySelector('#img-gallery-viewer').addEventListener('click', event => {
-        const srcNum = Number(bigImage.src.match(/(\d+).jpg/)[1]);
+    bigImage.addEventListener('click', event => {
+        const srcNum = getSrcNum(event);
         const halfWidth = window.innerWidth / 2;
 
         if (event.clientX > halfWidth && srcNum < imgNumber) {
             changeSrc(srcNum + 1);
         } else if (event.clientX < halfWidth && srcNum > 1) {
             changeSrc(srcNum - 1);
+        } else {
+            history.back();
         }
     });
 }

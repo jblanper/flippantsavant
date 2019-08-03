@@ -211,33 +211,6 @@ body {
     transform: rotate(2deg); 
 }
 
-/* big image */
-.big-img,
-.big-img-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-
-.big-img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
-    z-index: 5;
-    right: 0;
-    bottom: 0;
-}
-
-.big-img-overlay {
-    background-color: black;
-    opacity: .5;
-    width: 100%;
-    height: 100%;
-    z-index: 4;
-}
-
 /* comic & about */
 .comic-info h2,
 .comic-pages h2,
@@ -391,6 +364,32 @@ body {
 
 .instructions:hover {
     opacity: 1 !important;
+}
+
+/* big image */
+.big-img,
+.big-img-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.big-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    z-index: 5;
+    right: 0;
+    bottom: 0;
+}
+
+.big-img-overlay {
+    background-color: #444;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
 }
 
 /* about */

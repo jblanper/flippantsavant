@@ -117,17 +117,11 @@ export function createBigImageGallery(parent, event, imgNumber) {
         // set buttons bindings only once
         document.querySelector('#left-btn').addEventListener('click', goLeft);
         document.querySelector('#right-btn').addEventListener('click', goRight);
-
-        document.querySelector('#left-btn').addEventListener('touchend', event => {
-            event.preventDefault();
-            goLeft();
-        });
-        document.querySelector('#right-btn').addEventListener('touchend', event => {
-            event.preventDefault();
-            goRight();
-        });
-
         document.querySelector('#exit-btn').addEventListener('click', exitGallery);
+
+        handleTouch(goLeft, document.querySelector('#left-btn'));
+        handleTouch(goRight, document.querySelector('#right-btn'));
+        handleTouch(exitGallery, document.querySelector('#exit-btn'));
 
         document.addEventListener('keyup', event => {
             if (event.key === 'ArrowRight') goRight();
@@ -184,14 +178,31 @@ function handleSwipe (leftFn, rightFn, elem = document.body) {
     let touchStartX = 0;
     let touchEndX = 0;
 
-    document.body.addEventListener('touchstart', event => {
+    elem.addEventListener('touchstart', event => {
         touchStartX = event.changedTouches[0].screenX;
     });
     
-    document.body.addEventListener('touchend', event => {
+    elem.addEventListener('touchend', event => {
         touchEndX = event.changedTouches[0].screenX;
 
-        if (touchStartX > touchEndX) rightFn();
+        if (Math.abs(touchStartX - touchEndX) < 40) return;
+        else if (touchStartX > touchEndX) rightFn();
         else if (touchStartX < touchEndX) leftFn();
+    });
+}
+
+function handleTouch (fn, elem = document.body) {
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    elem.addEventListener('touchstart', event => {
+        touchStartX = event.changedTouches[0].screenX;
+    });
+    
+    elem.addEventListener('touchend', event => {
+        event.preventDefault();
+        touchEndX = event.changedTouches[0].screenX;
+
+        if (Math.abs(touchStartX - touchEndX) < 40) fn();
     });
 }

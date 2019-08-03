@@ -84,28 +84,71 @@ export function createBigImageGallery(parent, event, imgNumber) {
     // the gallery is close with the back button both in desktop and mobile
     const imgGalleryViewer = document.querySelector('#img-gallery-viewer');
 
+    // src manipulation methods
+    const getNewSrc = (newSrcNum, src) => {
+        return src.replace(/(\d+).(jpg|png)/, `${newSrcNum}.$2`);
+    };
+
+    const getSrcNum = src => Number(src.match(/(\d+).(jpg|png)/)[1]);
+
+    // navigation methods
+    const goLeft = _ => {
+        const bigImg = document.querySelector('.big-img');
+        const srcNum = getSrcNum(bigImg.src);
+    
+        if (srcNum > 1) bigImg.src = getNewSrc(srcNum - 1, bigImg.src);
+        else history.back();
+    }
+
+    const goRight = _ => {
+        const bigImg = document.querySelector('.big-img');
+        const srcNum = getSrcNum(bigImg.src);
+
+        if (srcNum < bigImg.dataset.imgNumber) bigImg.src = getNewSrc(srcNum + 1, bigImg.src);
+        else history.back();
+    }
+
+    const exitGallery = _ => history.back();
+
     // remove previous big-img
     if (imgGalleryViewer.querySelector('img')) {
         removeBigImage(imgGalleryViewer);
+    } else {
+        // set buttons bindings only once
+        document.querySelector('#left-btn').addEventListener('click', goLeft);
+        document.querySelector('#right-btn').addEventListener('click', goRight);
+
+        document.querySelector('#left-btn').addEventListener('touchend', event => {
+            event.preventDefault();
+            goLeft();
+        });
+        document.querySelector('#right-btn').addEventListener('touchend', event => {
+            event.preventDefault();
+            goRight();
+        });
+
+        document.querySelector('#exit-btn').addEventListener('click', exitGallery);
+
+        document.addEventListener('keyup', event => {
+            if (event.key === 'ArrowRight') goRight();
+            if (event.key === 'ArrowLeft') goLeft();
+            if (event.key === 'Escape') exitGallery();
+        })
+        handleSwipe(goLeft, goRight);
     }
 
-    const changeSrc = (newSrcNum) => {
-        bigImage.src = bigImage.src.replace(/(\d+).(jpg|png)/, `${newSrcNum}.$2`);
-    };
-
-    const getSrcNum = event => Number(event.target.src.match(/(\d+).(jpg|png)/)[1]);
-
     const bigImage = createBigImage(parent, event)[0];
+    bigImage.dataset.imgNumber = imgNumber; // for #right-btn click handler
 
     // bindings
     bigImage.addEventListener('click', event => {
-        const srcNum = getSrcNum(event);
+        const srcNum = getSrcNum(event.target.src);
         const halfWidth = window.innerWidth / 2;
 
         if (event.clientX > halfWidth && srcNum < imgNumber) {
-            changeSrc(srcNum + 1);
+            bigImage.src = getNewSrc(srcNum + 1, bigImage.src);
         } else if (event.clientX < halfWidth && srcNum > 1) {
-            changeSrc(srcNum - 1);
+            bigImage.src = getNewSrc(srcNum - 1, bigImage.src);
         } else {
             history.back();
         }
@@ -135,4 +178,20 @@ export function lazyLoadImages(images, options) {
         // fallback
         images.forEach(img => img.src = img.dataset.src);
     }
+}
+
+function handleSwipe (leftFn, rightFn, elem = document.body) {
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.body.addEventListener('touchstart', event => {
+        touchStartX = event.changedTouches[0].screenX;
+    });
+    
+    document.body.addEventListener('touchend', event => {
+        touchEndX = event.changedTouches[0].screenX;
+
+        if (touchStartX > touchEndX) rightFn();
+        else if (touchStartX < touchEndX) leftFn();
+    });
 }

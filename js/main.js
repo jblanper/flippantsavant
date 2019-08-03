@@ -66,7 +66,11 @@ document.querySelectorAll('#illustration img, .comic-pages img').forEach(img => 
         else if (img.src.search(/vermin/) > -1) imgNumber = 12;
 
         createBigImageGallery(imgGalleryViewer, event, imgNumber);
-        fade(document.querySelector('.instructions'), -.008, 1, .001);
+
+        // animation
+        fade(document.querySelector('#exit-btn'), -.008, 1, .001);
+        fade(document.querySelector('#left-btn'), -.008, 1, .001);
+        fade(document.querySelector('#right-btn'), -.008, 1, .001);
     });
 });
 

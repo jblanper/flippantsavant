@@ -75,6 +75,31 @@ h2:before {
     .comic-pages img {
         width: 90%;
     }
+
+    #exit-btn,
+    #left-btn,
+    #right-btn {
+        height: 20px;
+    }
+
+    #exit-btn {
+        width: 20px;
+        top: 5px;
+        right: 5px;
+    }
+
+    #left-btn,
+    #right-btn {
+        width: 10px;
+    }
+
+    #left-btn {
+        left: 0;
+    }
+
+    #right-btn {
+        right: 0;
+    }
 }
 
 /* tablet */
@@ -201,9 +226,13 @@ h2:before {
     }
 }
 
-@media (max-height: 650px) and (min-height: 500px) and (min-width: 500px) {
+@media (max-height: 650px) and (min-height: 500px) and (max-width: 500px) {
+    #main-header {
+        justify-content: flex-start;
+    }
+
     #main-header #logo {
-        height: 430px !important;
+        height: 340px !important;
     }
 }
 

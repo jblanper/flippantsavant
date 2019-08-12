@@ -4,7 +4,7 @@ function toggleElement(elem) {
         fade(elem, .05, 0, 1);
         elem.classList.remove('hidden');
     } else {
-        //fade(elem, .08, 1, 0.001);
+        fade(elem, -.05, 1, 0.001);
         elem.classList.add('hidden');
     }
 }
@@ -119,9 +119,9 @@ export function createBigImageGallery(parent, event, imgNumber) {
         document.querySelector('#right-btn').addEventListener('click', goRight);
         document.querySelector('#exit-btn').addEventListener('click', exitGallery);
 
-        handleTouch(goLeft, document.querySelector('#left-btn'));
-        handleTouch(goRight, document.querySelector('#right-btn'));
-        handleTouch(exitGallery, document.querySelector('#exit-btn'));
+        // handleTouch(goLeft, document.querySelector('#left-btn'));
+        // handleTouch(goRight, document.querySelector('#right-btn'));
+        // handleTouch(exitGallery, document.querySelector('#exit-btn'));
 
         document.addEventListener('keyup', event => {
             if (event.key === 'ArrowRight') goRight();
@@ -200,9 +200,8 @@ function handleTouch (fn, elem = document.body) {
     });
     
     elem.addEventListener('touchend', event => {
-        event.preventDefault();
         touchEndX = event.changedTouches[0].screenX;
 
-        if (Math.abs(touchStartX - touchEndX) < 40) fn();
+        if (Math.abs(touchStartX - touchEndX) < 20) fn();
     });
 }

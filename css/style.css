@@ -12,6 +12,7 @@ body {
 
 .hidden {
     display: none !important;
+    opacity: 0;
 }
 
 .to-left {
@@ -48,7 +49,7 @@ body {
     flex-direction: column;
     justify-content: center;
     opacity: 1;
-    transition: transform 300ms ease-out;
+    transition: transform 200ms ease-out;
 }
 
 #main-header #logo {
@@ -85,7 +86,7 @@ body {
 #about-text,
 #comic-text, 
 #illustration-text {
-    transition: fill 200ms ease-out;
+    transition: fill 100ms ease-out;
 }
 
 #about-item:hover, 
@@ -204,7 +205,7 @@ body {
     object-fit: cover;
     margin: 10px 0;
     box-shadow: 5px 5px #59f, -1px -1px #808080;
-    transition: transform 150ms ease-in;
+    transition: transform 120ms ease-in;
 }
 
 #illustration-article img:hover {
@@ -337,36 +338,42 @@ body {
     box-shadow: 5px 5px #ff8181, -1px -1px #ccc;
 }
 
-/* image gallery viewer */
-.instructions {
-    display: flex;
-}
-.instructions button {
-    padding: 10px;
-    z-index: 6;
-    text-align: center;
-    color: black;
-    background-color: rgba(255, 255, 255, .5);
-    transition: opacity 100ms ease-in;
-    font-size: 1.3rem;
-    border: none;
-}
-
-.instructions button:hover {
-    opacity: 1 !important;
-    cursor: pointer;
-}
-
+/* image gallery viewer instructions*/
+#exit-btn,
 #left-btn,
 #right-btn {
-    height: 100vh;
-    min-width: 100px;   
+    position: fixed;
+    display: block;
+    z-index: 10;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, .3);
+}
+
+#exit-btn:hover,
+#left-btn:hover,
+#right-btn:hover {
+    background-color: rgba(255, 255, 255, .8);
+}
+
+#exit-btn:hover path,
+#left-btn:hover path,
+#right-btn:hover path {
+    stroke: #000;
 }
 
 #exit-btn {
-    width: 100%;
-    height: 100px;
-    /* margin: 0 1rem; */
+    top: 1rem;
+    right: 1rem;
+}
+
+#left-btn {
+    top: 50%;
+    left: 1rem;
+}
+
+#right-btn {
+    top: 50%;
+    right: 1rem;
 }
 
 /* big image */

@@ -1,6 +1,6 @@
 import LogoMenu from './logoMenu.js';
 import LogoMenuItem from './logoMenuItem.js';
-import { createBigImageGallery, removeBigImage, placeholderSrc, lazyLoadImages, changeSection, fade } from './helper.js';
+import { createBigImageGallery, removeBigImage, placeholderSrc, lazyLoadImages, changeSection } from './helper.js';
 
 // handle main logo ---------------------------------------------------------------------------
 const aboutItem = new LogoMenuItem('about-item');
@@ -66,11 +66,6 @@ document.querySelectorAll('#illustration img, .comic-pages img').forEach(img => 
         else if (img.src.search(/vermin/) > -1) imgNumber = 12;
 
         createBigImageGallery(imgGalleryViewer, event, imgNumber);
-
-        // animation
-        fade(document.querySelector('#exit-btn'), -.008, 1, .001);
-        fade(document.querySelector('#left-btn'), -.008, 1, .001);
-        fade(document.querySelector('#right-btn'), -.008, 1, .001);
     });
 });
 

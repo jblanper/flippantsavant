@@ -4,6 +4,13 @@
     padding: 0;
 }
 
+button:focus, button:active,
+a:focus, a:active,
+input:focus, input:active {
+    outline: none;
+    -moz-outline-style: none;
+}
+
 body {
     font-family: 'Ubuntu', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     line-height: 1.7rem;

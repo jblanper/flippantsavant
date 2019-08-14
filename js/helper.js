@@ -128,7 +128,7 @@ export function createBigImageGallery(parent, event, imgNumber) {
             if (event.key === 'ArrowLeft') goLeft();
             if (event.key === 'Escape') exitGallery();
         })
-        handleSwipe(goLeft, goRight);
+        handleSwipe(goLeft, goRight, imgGalleryViewer);
     }
 
     const bigImage = createBigImage(parent, event)[0];
@@ -143,8 +143,6 @@ export function createBigImageGallery(parent, event, imgNumber) {
             bigImage.src = getNewSrc(srcNum + 1, bigImage.src);
         } else if (event.clientX < halfWidth && srcNum > 1) {
             bigImage.src = getNewSrc(srcNum - 1, bigImage.src);
-        } else {
-            history.back();
         }
     });
 }

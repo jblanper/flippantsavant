@@ -119,10 +119,6 @@ export function createBigImageGallery(parent, event, imgNumber) {
         document.querySelector('#right-btn').addEventListener('click', goRight);
         document.querySelector('#exit-btn').addEventListener('click', exitGallery);
 
-        // handleTouch(goLeft, document.querySelector('#left-btn'));
-        // handleTouch(goRight, document.querySelector('#right-btn'));
-        // handleTouch(exitGallery, document.querySelector('#exit-btn'));
-
         document.addEventListener('keyup', event => {
             if (event.key === 'ArrowRight') goRight();
             if (event.key === 'ArrowLeft') goLeft();
@@ -186,20 +182,5 @@ function handleSwipe (leftFn, rightFn, elem = document.body) {
         if (Math.abs(touchStartX - touchEndX) < 40) return;
         else if (touchStartX > touchEndX) rightFn();
         else if (touchStartX < touchEndX) leftFn();
-    });
-}
-
-function handleTouch (fn, elem = document.body) {
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    elem.addEventListener('touchstart', event => {
-        touchStartX = event.changedTouches[0].screenX;
-    });
-    
-    elem.addEventListener('touchend', event => {
-        touchEndX = event.changedTouches[0].screenX;
-
-        if (Math.abs(touchStartX - touchEndX) < 20) fn();
     });
 }
